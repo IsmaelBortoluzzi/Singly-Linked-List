@@ -1,15 +1,25 @@
-pub struct LinkedList {
-    pub head: Link, // Link = Option<Box<Node>>;
+pub type Link<T> = Option<Box<Node<T>>>;  // Tipo o typedef
+
+
+pub struct Node<T> {
+    pub element: T, 
+    pub next: Link<T>,
 }
 
-impl LinkedList {
-    pub fn new_empty_sll() -> LinkedList {
+
+pub struct LinkedList<T> {
+    pub head: Link<T>, // Link = Option<Box<Node>>;
+}
+
+impl<T> LinkedList<T> {
+    
+    pub fn new_empty_sll() -> LinkedList<T> {
         LinkedList {
             head: None,
         }
     }
 
-    pub fn push(&mut self, new_element: i32) {
+    pub fn push(&mut self, new_element: <T>) {
 
         let old_head = std::mem::replace(&mut self.head, None);
 
@@ -69,7 +79,7 @@ impl LinkedList {
     // }
 
 
-    pub fn pop_head(&mut self) -> Option<i32> {
+    pub fn pop_head(&mut self) -> Option<T> {
         let old_head = self.head.take();
 
         match old_head {
@@ -91,15 +101,16 @@ impl LinkedList {
         // })
     }
 
+    pub fn peek(&self) -> Option<&T> {
+        match &self.head {
+            Some(n) => Some(&n.element),
+            None => None,
+        }
+
+        // O jeito melhor
+        
+        // self.head.as_ref().map(|n|, &n.element)
+    }
+
 }
 
-
-
-// PRIVATE
-
-pub type Link = Option<Box<Node>>;  // Tipo o typedef
-
-pub struct Node {
-    pub element: i32, 
-    pub next: Link,
-}

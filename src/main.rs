@@ -11,7 +11,8 @@ fn it_works() {
     println!("{}", list.head.as_deref().unwrap().next.as_deref().unwrap().element);
     list.pop_head();
     println!("{}", list.head.as_deref().unwrap().element);
-    println!("{}", list.head.as_deref().unwrap().next.as_deref().unwrap().element);
+    // println!("{}", list.head.as_deref().unwrap().next.as_deref().unwrap().element);  // panicks here
+    println!("{}", *(list.peek().unwrap()));
 
 }
 
