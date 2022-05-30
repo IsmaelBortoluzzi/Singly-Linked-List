@@ -1,4 +1,4 @@
-#[path = "enums/linked_list.rs"] mod linked_list;
+#[path = "linked_list/linked_list.rs"] mod linked_list;
 use linked_list::*;
 
 fn it_works() {
