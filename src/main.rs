@@ -3,7 +3,7 @@ use linked_list::*;
 
 fn it_works() {
     
-    let mut list: LinkedList = LinkedList::new_empty_sll();
+    let mut list: LinkedList<i32> = LinkedList::new_empty_sll();
     list.push(10);
     list.push(20);
 

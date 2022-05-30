@@ -19,7 +19,7 @@ impl<T> LinkedList<T> {
         }
     }
 
-    pub fn push(&mut self, new_element: <T>) {
+    pub fn push(&mut self, new_element: T) {
 
         let old_head = std::mem::replace(&mut self.head, None);
 
@@ -110,6 +110,20 @@ impl<T> LinkedList<T> {
         // O jeito melhor
         
         // self.head.as_ref().map(|n|, &n.element)
+    }
+
+    fn append(&mut self, new_element: T) {
+        let mut current_node = &mut self.head;
+
+        while current_node.is_some() && current_node.as_deref().unwrap().next.is_some() {
+            current_node = current_node.as_deref().unwrap().next;
+        }
+
+        current_node.as_deref().unwrap().next = Some(Box::new(Node {
+            element: new_element,
+            next: None,
+        }));
+
     }
 
 }
